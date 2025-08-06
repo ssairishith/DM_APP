@@ -1,7 +1,7 @@
 
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Link from 'next/link';
 
 export default function OrderPage() {
@@ -14,8 +14,14 @@ export default function OrderPage() {
   const blocks = ['Block A', 'Block B', 'Block C', 'Block E', 'Block F', 'Block G', 'Block H'];
 
   // Check if user has enough coins for free delivery
-  const userCoins = parseInt(localStorage.getItem('userCoins') || '0');
-  const canUseCoins = userCoins >= 100;
+  const [userCoins, setUserCoins] = useState(0);
+  const [canUseCoins, setCanUseCoins] = useState(false);
+
+  useEffect(() => {
+    const coins = parseInt(localStorage.getItem('userCoins') || '0');
+    setUserCoins(coins);
+    setCanUseCoins(coins >= 100);
+  }, []);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
