@@ -60,6 +60,8 @@ export default function JoinPage() {
   const [rides, setRides] = useState<Ride[]>([]);
   const [filteredRides, setFilteredRides] = useState<Ride[]>([]);
   const [rideRequests, setRideRequests] = useState<RideRequest[]>([]);
+  const [showConfirmedMessage, setShowConfirmedMessage] = useState(false);
+  const [confirmedRidesCount, setConfirmedRidesCount] = useState(0);
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedRide, setSelectedRide] = useState<Ride | null>(null);
   const [showJoinForm, setShowJoinForm] = useState(false);
@@ -162,7 +164,10 @@ export default function JoinPage() {
     };
 
     window.addEventListener('storage', handleStorageChange);
-    window.addEventListener('rideUpdated', handleCustomRideUpdate as EventListener);
+    window.addEventListener('rideUpdated', () => {
+      loadRides();
+      loadRideRequests();
+    });
 
     // Faster interval for better sync
     const interval = setInterval(() => {
@@ -275,7 +280,7 @@ export default function JoinPage() {
           </Link>
         </div>
 
-        {rideRequests.filter((req) => req.status === 'confirmed').length > 0 && (
+        {confirmedRidesCount > 0 && (
           <div className="bg-green-900/30 rounded-2xl p-4 mb-6 border border-green-500">
             <h3 className="text-green-400 font-semibold mb-2">
               <i className="ri-notification-badge-line mr-2"></i>
@@ -307,11 +312,11 @@ export default function JoinPage() {
         </div>
 
         <div className="max-w-4xl mx-auto">
-          <div className="mb-4 text-center">
-            <p className="text-gray-500 text-sm">
-              Database Status: {isClient ? getFromDatabase('rides').length : 0} total rides | Active: {filteredRides.length}
-            </p>
-          </div>
+            <div className="mb-4 text-center">
+              <p className="text-gray-500 text-sm">
+                Database Status: {isClient ? filteredRides.length : 0} total rides | Active: {filteredRides.length}
+              </p>
+            </div>
 
           {filteredRides.length === 0 ? (
             <div className="text-center py-16">

@@ -45,6 +45,36 @@
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
       "static/chunks/app/ridemate/join/mybookings/page.js"
+    ],
+    "/ridemate/notifications/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/ridemate/notifications/page.js"
+    ],
+    "/deliverymate/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/deliverymate/page.js"
+    ],
+    "/deliverymate/order/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/deliverymate/order/page.js"
+    ],
+    "/deliverymate/earn/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/deliverymate/earn/page.js"
+    ],
+    "/deliverymate/earn/mydeliveries/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/deliverymate/earn/mydeliveries/page.js"
+    ],
+    "/deliverymate/duocoins/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/deliverymate/duocoins/page.js"
     ]
   }
 }

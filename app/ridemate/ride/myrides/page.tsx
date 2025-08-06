@@ -102,7 +102,26 @@ export default function MyRides() {
           <div></div>
         </div>
 
-        <div className="max-w-4xl mx-auto">
+          <div className="max-w-4xl mx-auto">
+            <button
+              onClick={() => {
+                if (confirm('Are you sure you want to clear all your ride history? This action cannot be undone.')) {
+                  // Clear all ride-related data
+                  localStorage.removeItem('rides');
+                  localStorage.removeItem('myRides');
+                  localStorage.removeItem('rideRequests');
+                  localStorage.removeItem('myBookings');
+                  // Update state
+                  setRides([]);
+                  alert('All ride history cleared.');
+                  // Notify join page to refresh
+                  window.dispatchEvent(new CustomEvent('rideUpdated'));
+                }
+              }}
+              className="mb-6 w-full px-6 py-3 bg-red-600 text-white font-semibold rounded-lg hover:bg-red-700 transition-all duration-300 whitespace-nowrap cursor-pointer"
+            >
+              Clear All History
+            </button>
           {rides.length === 0 ? (
             <div className="text-center py-16">
               <div className="w-24 h-24 mx-auto mb-6 bg-gray-800 rounded-full flex items-center justify-center">
@@ -191,18 +210,26 @@ export default function MyRides() {
                       <button
                         onClick={() => {
                           if (confirm('Confirm you have reached your destination? This will mark the ride as completed and remove it from your list.')) {
-                            // Mark ride as completed in myRides and myBookings
+                            // Remove ride from myRides and rides
                             let myRides = JSON.parse(localStorage.getItem('myRides') || '[]');
-                            myRides = myRides.map((r: any) => r.id === ride.id ? { ...r, status: 'completed' } : r);
+                            myRides = myRides.filter((r: any) => r.id !== ride.id);
                             localStorage.setItem('myRides', JSON.stringify(myRides));
 
+                            let allRides = JSON.parse(localStorage.getItem('rides') || '[]');
+                            allRides = allRides.filter((r: any) => r.id !== ride.id);
+                            localStorage.setItem('rides', JSON.stringify(allRides));
+
+                            // Remove related bookings from myBookings
                             let myBookings = JSON.parse(localStorage.getItem('myBookings') || '[]');
-                            myBookings = myBookings.map((b: any) => b.rideId === ride.id ? { ...b, status: 'completed' } : b);
+                            myBookings = myBookings.filter((b: any) => b.rideId !== ride.id);
                             localStorage.setItem('myBookings', JSON.stringify(myBookings));
+
+                            // Dispatch event to notify join page to refresh
+                            window.dispatchEvent(new CustomEvent('rideUpdated'));
 
                             // Update state to reflect changes
                             setRides(myRides.reverse());
-                            alert('Ride marked as completed. Thank you for using RideMate!');
+                            alert('Ride marked as completed and removed. Thank you for using RideMate!');
                           }
                         }}
                         className="w-full px-6 py-3 bg-green-600 text-white font-semibold rounded-lg hover:bg-green-700 transition-all duration-300 whitespace-nowrap cursor-pointer"

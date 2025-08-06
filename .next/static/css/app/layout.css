@@ -486,6 +486,9 @@ video {
 .left-4{
   left: 1rem;
 }
+.right-2{
+  right: 0.5rem;
+}
 .right-4{
   right: 1rem;
 }
@@ -1106,6 +1109,9 @@ video {
 }
 .pl-12{
   padding-left: 3rem;
+}
+.pr-10{
+  padding-right: 2.5rem;
 }
 .pr-4{
   padding-right: 1rem;

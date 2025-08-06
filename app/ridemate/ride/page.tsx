@@ -188,16 +188,26 @@ export default function RidePage() {
                     <option value="auto">Auto Rickshaw</option>
                   </select>
                 </div>
-                <div>
+                <div className="relative">
                   <label className="block text-sm font-medium text-gray-300 mb-2">Vehicle Number</label>
                   <input
                     type="text"
                     value={vehicleNumber}
                     onChange={(e) => setVehicleNumber(e.target.value)}
-                    className="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-blue-500 transition-colors"
+                    className="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-blue-500 transition-colors pr-10"
                     placeholder="Enter vehicle number plate"
                     required
                   />
+                  {vehicleNumber && (
+                    <button
+                      type="button"
+                      onClick={() => setVehicleNumber('')}
+                      className="absolute right-2 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-white focus:outline-none"
+                      aria-label="Clear vehicle number"
+                    >
+                      <i className="ri-close-circle-fill text-lg"></i>
+                    </button>
+                  )}
                 </div>
               </div>
             </div>
