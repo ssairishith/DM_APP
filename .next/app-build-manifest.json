@@ -26,11 +26,6 @@
       "static/chunks/main-app.js",
       "static/chunks/app/ridemate/page.js"
     ],
-    "/ridemate/notifications/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/ridemate/notifications/page.js"
-    ],
     "/ridemate/ride/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",

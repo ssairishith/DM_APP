@@ -1,8 +1,9 @@
 {
-  "/ridemate/page": "app/ridemate/page.js",
-  "/ridemate/join/mybookings/page": "app/ridemate/join/mybookings/page.js",
-  "/ridemate/ride/myrides/page": "app/ridemate/ride/myrides/page.js",
   "/page": "app/page.js",
   "/dashboard/page": "app/dashboard/page.js",
-  "/ridemate/join/page": "app/ridemate/join/page.js"
+  "/ridemate/page": "app/ridemate/page.js",
+  "/ridemate/join/page": "app/ridemate/join/page.js",
+  "/ridemate/join/mybookings/page": "app/ridemate/join/mybookings/page.js",
+  "/ridemate/ride/page": "app/ridemate/ride/page.js",
+  "/ridemate/ride/myrides/page": "app/ridemate/ride/myrides/page.js"
 }
